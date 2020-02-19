@@ -1,0 +1,7 @@
+{
+    "spenviro": {
+        "configLevel": "project",
+        "useProfile": false,
+        "awsConfigFilePath": "/home/martin/.amplify/awscloudformation/BffujIkFwO"
+    }
+}
