@@ -17,14 +17,14 @@ class MapPlaceHolder extends Component {
       // Important! Always set the container height explicitly
       <div style={{ height: '100vh', width: '100%' }}>
         <GoogleMapReact
-          bootstrapURLKeys={{ key: 'AIzaSyCxDRF2tdn4tF8ZvSvJHKvux_bkWlPha0U' }}
+          bootstrapURLKeys={{ key: 'AIzaSyCo-D9CXQAmJifdiIlYVAAA69xCCHKjZBA' }}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
         >
           <AnyReactComponent
             lat={59.955413}
             lng={30.337844}
-            text="My Marker"
+            text="MARKER"
           />
         </GoogleMapReact>
       </div>
