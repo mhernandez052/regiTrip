@@ -1,3 +1,4 @@
 accessKeys.csv
 node_modules/*
 src/.vscode
+src/components/BoilerPlate.js
