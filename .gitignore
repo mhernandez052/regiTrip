@@ -1,1 +1,3 @@
 accessKeys.csv
+node_modules/*
+src/.vscode
