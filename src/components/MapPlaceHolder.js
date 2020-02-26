@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
-
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+import CustomMarker from './CustomMarker';
 
 class MapPlaceHolder extends Component {
   static defaultProps = {
@@ -12,9 +11,6 @@ class MapPlaceHolder extends Component {
     zoom: 11
   };
 
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       // Important! Always set the container height explicitly
@@ -23,14 +19,23 @@ class MapPlaceHolder extends Component {
           bootstrapURLKeys={{ key: 'AIzaSyCo-D9CXQAmJifdiIlYVAAA69xCCHKjZBA' }}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
-        >
-          <AnyReactComponent
-            lat={38.433120}
-            lng={-121.383029}
-            text="MARKER"
-          />
+          disableDefaultUI={true}
+          mapTypeControl={true}
+          streetViewControl={true}
+          // styles=[{featureType = 'poi', elementType = 'labels', stylers = [{ visibility= 'on' }]}]
+
+        // disableDefaultUI: true,
+        // mapTypeControl: true,
+        // streetViewControl: true,
+          // styles: [{featureType: 'poi', elementType: 'labels', stylers: [{visibility: 'on' }] }]
+      >
+          <CustomMarker
+          lat={38.433120}
+          lng={-121.383029}
+          name="My Marker"
+          color="blue" />
         </GoogleMapReact>
-      </div>
+      </div >
     );
   }
 }
