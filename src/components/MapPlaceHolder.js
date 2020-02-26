@@ -8,9 +8,9 @@ class MapPlaceHolder extends Component {
       lat: 38.433120,
       lng: -121.383029
     },
-    zoom: 11
+    zoom: 11,
   };
-
+  
   render() {
     return (
       // Important! Always set the container height explicitly
@@ -19,25 +19,19 @@ class MapPlaceHolder extends Component {
           bootstrapURLKeys={{ key: 'AIzaSyCo-D9CXQAmJifdiIlYVAAA69xCCHKjZBA' }}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
-          disableDefaultUI={true}
-          mapTypeControl={true}
-          streetViewControl={true}
-          // styles=[{featureType = 'poi', elementType = 'labels', stylers = [{ visibility= 'on' }]}]
-
-        // disableDefaultUI: true,
-        // mapTypeControl: true,
-        // streetViewControl: true,
-          // styles: [{featureType: 'poi', elementType: 'labels', stylers: [{visibility: 'on' }] }]
-      >
+          mapTypeId={this.props.mapView}
+          // options={map => ({ mapTypeId: map.MapTypeId.SATELLITE })}
+        >
           <CustomMarker
-          lat={38.433120}
-          lng={-121.383029}
-          name="My Marker"
-          color="blue" />
+            lat={38.433120}
+            lng={-121.383029}
+            name="Conor's House"
+            color="green" />
         </GoogleMapReact>
       </div >
     );
   }
 }
+
 
 export default MapPlaceHolder;

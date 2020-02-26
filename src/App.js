@@ -3,6 +3,7 @@ import './App.css';
 
 import Title from './components/Title'
 import MapPlaceHolder from './components/MapPlaceHolder';
+import CarInfo from './components/CarInfo';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Title />
         <MapPlaceHolder />
         {/* <img src={lion} className="App-logo" alt="logo" /> */}
+        <CarInfo />
         <p>Hello from Pakistan</p>
       </header>
     </div>
