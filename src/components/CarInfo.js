@@ -5,18 +5,30 @@ import React from 'react';
 class CarInfo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: '' };
+    this.state = {
+      value: '',
+      carMPG: '',
+      carRange: ''
+    };
 
-    this.handleChange = this.handleChange.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
+    this.handleChangeCarMPG = this.handleChangeCarMPG.bind(this);
+    this.handleChangeCarRange = this.handleChangeCarRange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({ value: event.target.value });
+  handleChangeCarMPG(event) {
+    this.setState({ carMPG: event.target.value });
+  }
+
+  handleChangeCarRange(event) {
+    this.setState({ carRange: event.target.value });
   }
 
   handleSubmit(event) {
-    alert('Info  was submitted: ' + this.state.value);
+    var mpgMessage = 'Car MPG: ' + this.state.carMPG;
+    var rangeMessage = '\nRange: ' + this.state.carRange;
+    alert(mpgMessage + rangeMessage);
     event.preventDefault();
   }
 
@@ -25,12 +37,12 @@ class CarInfo extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           Vehicle Combined MPG: <br />
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
+          <input type="text" value={this.state.carMPG} onChange={this.handleChangeCarMPG} />
         </label>
         <br />
-        <label> Vehicle Range <br />
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
-        </label>
+        {<label> Vehicle Range <br />
+          <input type="text" value={this.state.carRange} onChange={this.handleChangeCarRange} />
+        </label>}
         <br />
         <input type="submit" value="Submit" />
       </form>
