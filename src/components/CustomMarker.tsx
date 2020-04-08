@@ -3,10 +3,10 @@ import './CustomMarker.css';
 
 const CustomMarker = (props: any) => {
     // const { color, name, id } = props;
-    const { color, name} = props;
+    const {name} = props;
     return (
       <div className="marker"
-        style={{ backgroundColor: color, cursor: 'pointer'}}
+        // style={{ backgroundColor: color, cursor: 'pointer'}}
         title={name}
       />
     );
