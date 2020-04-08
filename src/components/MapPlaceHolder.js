@@ -10,6 +10,13 @@ class MapPlaceHolder extends Component {
     },
     zoom: 11,
   };
+  constructor(props) {
+    super(props);
+    this.state = {
+      temp: '',
+      
+    };
+  }
 
   render() {
     return (
@@ -20,13 +27,15 @@ class MapPlaceHolder extends Component {
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
           mapTypeId={this.props.mapView}
-          // options={map => ({ mapTypeId: map.MapTypeId.SATELLITE })}
-          >
+        // options={map => ({ mapTypeId: map.MapTypeId.SATELLITE })}
+        >
           <CustomMarker
             lat={38.433120}
             lng={-121.383029}
             name="Conor's House"
-            color="green" />
+            color="green"
+            id={1}
+          />
 
         </GoogleMapReact>
       </div >
