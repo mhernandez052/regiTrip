@@ -66,7 +66,6 @@ class CarInfo extends React.Component {
   render() {
     return (
       <div>
-
         <form onSubmit={this.handleSubmit}>
           <label>
             Vehicle Combined MPG: <br />

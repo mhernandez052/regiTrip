@@ -4,14 +4,18 @@ import './App.css';
 import Title from './components/Title'
 import MapPlaceHolder from './components/MapPlaceHolder';
 import CarInfo from './components/CarInfo';
+import LandingPage from './components/LandingPage';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Title />
+        {/* <Title /> */}
+        <LandingPage/>
+        <br />
         <MapPlaceHolder />
-        <CarInfo />
+        <br />
+        {/* <CarInfo /> */}
       </header>
     </div>
   );
