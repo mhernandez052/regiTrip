@@ -1,6 +1,29 @@
 .AutoFillDropDown {
+  cursor: text;
+  text-align: center;
+}
+
+.SuggestionContainer {
+  background-color:white;
+  cursor: pointer;
+  size: 15px;
+}
+
+.SuggestionIndividual {
   color: black;
   text-align: center;
-  background-color: white;
-  cursor: pointer;
-} 
+  size: 15px;
+}
+
+.SuggestionActive {
+  background-color: grey;
+  size: 10px;
+}
+
+.OriginInput {
+  float: left;
+}
+
+.DestInput {
+  float: right;
+}
