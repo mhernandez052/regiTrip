@@ -10,12 +10,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {/* <Title /> */}
         <LandingPage/>
-        <br />
-        <MapPlaceHolder />
-        <br />
-        {/* <CarInfo /> */}
       </header>
     </div>
   );

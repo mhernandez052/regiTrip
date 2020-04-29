@@ -48,12 +48,6 @@ class LandingPage extends React.Component {
             onSelect={this.handleOriginSelect}
             onChange={this.handleOriginAddress}
             placeholder={"Enter Origin"}
-            inputClassName="AutoFillDropDown"
-            suggestionsClassNames={{
-              container: 'SuggestionContainer',
-              suggestion: 'SuggestionIndividual',
-              suggestionActive: 'SuggestionActive'
-            }}
           />
         </div>
         <div className="DestInput">
@@ -62,15 +56,9 @@ class LandingPage extends React.Component {
             onSelect={this.handleDestSelect}
             onChange={this.handleDestAddress}
             placeholder={"Enter Destination"}
-            inputClassName="AutoFillDropDown"
-            suggestionsClassNames={{
-              container: 'SuggestionContainer',
-              suggestion: 'SuggestionIndividual',
-              suggestionActive: 'SuggestionActive',
-            }}
           />
         </div>
-
+        <MapPlaceHolder />
       </div>
     )
   }
