@@ -1,9 +1,6 @@
 import React from 'react';
 import './App.css';
 
-import Title from './components/Title'
-import MapPlaceHolder from './components/MapPlaceHolder';
-import CarInfo from './components/CarInfo';
 import LandingPage from './components/LandingPage';
 
 function App() {

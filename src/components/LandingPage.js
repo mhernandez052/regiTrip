@@ -1,4 +1,6 @@
 import React from 'react';
+import MapPlaceHolder from './MapPlaceHolder';
+
 import './LandingPage.css';
 
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
@@ -27,13 +29,15 @@ class LandingPage extends React.Component {
   }
 
   handleOriginSelect = async (value) => {
+    this.setState({originAddress:value.description})
     const results = await geocodeByAddress(value.description);
     const latLng = await getLatLng(results[0]);
     this.setState({ originLat: latLng.lat })
     this.setState({ originLng: latLng.lng })
   }
-
+  
   handleDestSelect = async (value) => {
+    this.setState({destAddress:value.description})
     const results = await geocodeByAddress(value.description);
     const latLng = await getLatLng(results[0]);
     this.setState({ destLat: latLng.lat })
@@ -58,7 +62,11 @@ class LandingPage extends React.Component {
             placeholder={"Enter Destination"}
           />
         </div>
-        <MapPlaceHolder />
+        {/* var props = { x: 1, y: 1, z:1 };
+<Component {...props} /> */}
+        <div className="MapStyle">
+          <MapPlaceHolder {...this.state} />
+        </div>
       </div>
     )
   }

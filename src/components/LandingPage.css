@@ -1,8 +1,23 @@
 
 .OriginInput {
-  float: left;
+  /* float: left; */
+  width: 200px;
+  padding: 10px;
 }
 
 .DestInput {
-  float: right;
+  width: 200px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  /* float: left; */
+}
+
+.MapStyle {
+  /* right: 0; */
+  /* height: 100vh;
+  width: 80%; */
+  /* float: right; */
+  /* align-items: center;
+  justify-content: center; */
 }
