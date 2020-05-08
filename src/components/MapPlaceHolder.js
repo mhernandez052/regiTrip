@@ -36,19 +36,19 @@ class MapPlaceHolder extends Component {
             mapTypeId={this.props.mapView}
           >
             <CustomMarker
-              lat={this.props.destLat}
-              lng={this.props.destLng}
-              name="Conor's House"
-              color="green"
-              id={1}
-            /> 
-            <CustomMarker
               lat={this.props.originLat}
               lng={this.props.originLng}
-              name="Conor's House"
+              name="Origin"
               color="green"
               id={1}
             />
+            <CustomMarker
+              lat={this.props.destLat}
+              lng={this.props.destLng}
+              name="Destination"
+              color="green"
+              id={1}
+            /> 
             {/* <CustomMarker
               lat={38.433120}
               lng={-121.383029}
