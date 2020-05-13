@@ -22,7 +22,9 @@ class LandingPage extends React.Component {
 
       carCurRange: null,
       carMaxRange: null,
-      listGasStations: []
+
+      directions: [],
+      listGasStations: [],
 
     }
   }
@@ -74,37 +76,71 @@ class LandingPage extends React.Component {
 
     // event.preventDefault();
   }
+  createGasURL = (curLat, curLng) => {
+    // http://devapi.mygasfeed.com/stations/radius/38.589565/-121.489270/10/reg/price/rfej9napna.json?callback=?
+    let radius = 15;
+    var gasUrl = "http://devapi.mygasfeed.com/stations/radius/" + curLat + "/" + curLng + "/" + radius + "/reg/price/rfej9napna.json";
+    return gasUrl;
+  }
+
+  createdirectionURL = (originLat, originLng, destLat, destLng) => {
+    let directionsUrl = "https://maps.googleapis.com/maps/api/directions/json?origin=";
+    directionsUrl += originLat + "," + originLng + "&destination=";
+    directionsUrl += destLat + "," + destLng + "&key=AIzaSyCo-D9CXQAmJifdiIlYVAAA69xCCHKjZBA";
+    return directionsUrl;
+  }
+
+  checkPriceValid = (regPrice) => {
+    if (regPrice === "N\\/A" || regPrice === "N/A") {
+      // console.log("invalid price");
+      return false
+    }
+    return true;
+  }
 
   ParseData = () => {
     // Start with getting Route
-    // var url = "https://maps.googleapis.com/maps/api/directions/json?origin=38.5815719,-121.4943996&destination=Chico,CA&key=AIzaSyCo-D9CXQAmJifdiIlYVAAA69xCCHKjZBA"
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
-    var directionsUrl = proxyurl + "https://maps.googleapis.com/maps/api/directions/json?origin=";
-
-    var temp = this.state.originLat + "," + this.state.originLng + "&destination=";
-    directionsUrl += temp;
-    temp = this.state.destLat + "," + this.state.destLng + "&key=AIzaSyCo-D9CXQAmJifdiIlYVAAA69xCCHKjZBA"
-    directionsUrl += temp
-    // console.log(directionsUrl);
-    fetch(directionsUrl)
+    let ts = this.state
+    let directionAPIUrl = this.createdirectionURL(ts.originLat, ts.originLng, ts.destLat, ts.destLng);
+    // console.log(directionAPIUrl);
+    var stops = [];
+    // Current range at all times in meters
+    // https://stackoverflow.com/questions/57075049/how-to-chain-multiple-fetch-promises
+    fetch(proxyurl + directionAPIUrl)
       .then(res => res.json())
       .then(result => {
-        console.log(result);
+        var steps = result.routes[0].legs[0].steps;
+        var remainingRange = this.state.carCurRange * 1609.34;
+        for (let i = 0; i < steps.length; i++) {
+          // console.log(steps[i].distance.value);
+          remainingRange -= steps[i].distance.value;
+          if (remainingRange < 48280.3) {
+            stops.push(steps[i].end_location);
+            remainingRange = this.state.carMaxRange * 1609.34;
+          }
+        }
+        for (let i = 0; i < stops.length; i++) {
+          let stopsLat = stops[i].lat;
+          let stopsLng = stops[i].lng;
+          let gasUrl = this.createGasURL(stopsLat, stopsLng);
+          let stationStops = [];
+          fetch(gasUrl)
+            .then(res1 => res1.json())
+            .then(result1 => {
+              let gasStationsList = result1.stations;
+              for (let i = 0; i < gasStationsList.length; i++) {
+                if (this.checkPriceValid(gasStationsList[i].reg_price)) {
+                  stationStops.push(gasStationsList[i]);
+                  break;
+                }
+              }
+              this.setState({listGasStations: gasStationsList});
+              // console.log(result1);
+            })
+        }
+
       })
-
-
-
-    // console.log("\nGas price...Starting\n")
-    // // /stations/radius/(Latitude)/(Longitude)/(distance)/(fuel type)/(sort by)/apikey.json?callback=?
-    // var starturl = "http://devapi.mygasfeed.com/stations/radius/38.589565/-121.489270/10/reg/price/rfej9napna.json?callback=?"
-    // var endUrl = ""
-    // var final
-    // fetch("http://devapi.mygasfeed.com/stations/radius/38.589565/-121.489270/10/reg/price/rfej9napna.json")
-    //   .then(res => res.json())
-    //   .then(result => {
-    //     console.log(result);
-    //   })
-    // console.log("\nGas price...Finished\n")
   }
 
   render() {
