@@ -69,7 +69,7 @@ class LandingPage extends React.Component {
       }
     }
     if (flag === 1) {
-      console.log("Time to render data");
+      // console.log("Time to render data");
       this.ParseData();
     }
     // console.log("ht: " + this.state.originLat + this.state.originLng);
@@ -124,22 +124,30 @@ class LandingPage extends React.Component {
           let stopsLat = stops[i].lat;
           let stopsLng = stops[i].lng;
           let gasUrl = this.createGasURL(stopsLat, stopsLng);
-          let stationStops = [];
+          var stationStops = [];
           fetch(gasUrl)
             .then(res1 => res1.json())
             .then(result1 => {
               let gasStationsList = result1.stations;
               for (let i = 0; i < gasStationsList.length; i++) {
                 if (this.checkPriceValid(gasStationsList[i].reg_price)) {
-                  stationStops.push(gasStationsList[i]);
+                  // this.setState(state => {
+                  //   const list = state.list.concat(state.value);
+                  this.setState({
+                    listGasStations: this.state.listGasStations.concat(gasStationsList[i])
+                  });
+                  // stationStops.push(gasStationsList[i]);
+                  // console.log(gasStationsList[i]);
                   break;
                 }
               }
-              this.setState({listGasStations: gasStationsList});
-              // console.log(result1);
             })
+          // console.log("pre fetched")
+          // console.log(stationStops);
+          // console.log("fetched")
+          // this.setState({ listGasStations: stationStops });
         }
-
+        // console.log(this.state.listGasStations);
       })
   }
 

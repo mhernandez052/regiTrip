@@ -27,6 +27,7 @@ class MapPlaceHolder extends Component {
     let curProps = this.props;
     let curCoords = [curProps.originLat, curProps.originLng, curProps.destLat, curProps.destLng];
     let prevCoords = [prevProps.originLat, prevProps.originLng, prevProps.destLat, prevProps.destLng];
+    // console.log(this.props);
     if (!(curCoords.includes(null) || curCoords.includes(undefined))) {
       if (!(JSON.stringify(curCoords) === JSON.stringify(prevCoords))) {
         let newLat = (curCoords[0] + curCoords[2]) / 2.0;
