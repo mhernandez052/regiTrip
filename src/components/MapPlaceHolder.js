@@ -34,11 +34,11 @@ class MapPlaceHolder extends Component {
       if (!(JSON.stringify(curCoords) === JSON.stringify(prevCoords))) {
         let newLat = (curCoords[0] + curCoords[2]) / 2.0;
         let newLng = (curCoords[1] + curCoords[3]) / 2.0;
-        let newCenter = {lat:newLat, lng:newLng};
+        let newCenter = { lat: newLat, lng: newLng };
         // Calculate new zoom here when you get a chance
         // https://stackblitz.com/edit/react-google-maps-bounds?file=Hello.js
-        this.setState({center:newCenter});
-        this.setState({zoom:5});
+        this.setState({ center: newCenter });
+        this.setState({ zoom: 5 });
       }
     }
     // curProps.listGasStations.len
@@ -49,16 +49,14 @@ class MapPlaceHolder extends Component {
 
 
   render() {
- // if (this.state.loading) {
+    // if (this.state.loading) {
     //   return <div>loading...</div>;
     // }
     if (this.props.listGasStations) {
       console.log(this.props.listGasStations);
     }
-    const p = this.props.listGasStations.map (d => (
+    const p = this.props.listGasStations.map(d => (
       <p>
-        Gas Stations
-        <br />
         {d.address}
         {", " + d.city}
         {" $ " + d.reg_price}
@@ -68,13 +66,20 @@ class MapPlaceHolder extends Component {
     return (
       // Important! Always set the container height explicitly
       <div>
+        <div className="location">
+
+          <p>
+            Gas Stations
+          </p>
+          {p}
+        </div>
         <div style={{ height: '80vh', width: '90%' }}>
-        <GoogleMapReact
+          <GoogleMapReact
             bootstrapURLKeys={{ key: 'AIzaSyCo-D9CXQAmJifdiIlYVAAA69xCCHKjZBA' }}
-            defaultCenter={{lat:0,lng:0}}
-            center = {this.state.center}
-            zoom = {this.state.zoom}
-            // mapTypeId={this.props.mapView}
+            defaultCenter={{ lat: 0, lng: 0 }}
+            center={this.state.center}
+            zoom={this.state.zoom}
+          // mapTypeId={this.props.mapView}
           >
             <CustomMarker
               lat={this.props.originLat}
@@ -91,9 +96,6 @@ class MapPlaceHolder extends Component {
               id={2}
             />
           </GoogleMapReact>
-          <div className="location">
-            {p}
-          </div>
         </div >
       </div>
     );
