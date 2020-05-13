@@ -60,8 +60,6 @@ class LandingPage extends React.Component {
   }
 
   handleSubmit = (event) => {
-    // var m1 = '\ncurRange: ' + this.state.carCurRange;
-    // var m2 = '\nMax: ' + this.state.carMaxRange;
     var flag = 1;
     for (var key in this.state) {
       if (this.state[key] === null || this.state[key] === "") {
@@ -124,11 +122,11 @@ class LandingPage extends React.Component {
           let stopsLat = stops[i].lat;
           let stopsLng = stops[i].lng;
           let gasUrl = this.createGasURL(stopsLat, stopsLng);
-          var stationStops = [];
+          // var stationStops = [];
           fetch(gasUrl)
             .then(res1 => res1.json())
             .then(result1 => {
-              let gasStationsList = result1.stations;
+              var gasStationsList = result1.stations;
               for (let i = 0; i < gasStationsList.length; i++) {
                 if (this.checkPriceValid(gasStationsList[i].reg_price)) {
                   // this.setState(state => {

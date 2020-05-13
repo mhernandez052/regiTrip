@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import CustomMarker from './CustomMarker';
 
+import './MapPlaceHolder.css';
+
 class MapPlaceHolder extends Component {
   constructor(props) {
     super(props);
@@ -36,13 +38,32 @@ class MapPlaceHolder extends Component {
         // Calculate new zoom here when you get a chance
         // https://stackblitz.com/edit/react-google-maps-bounds?file=Hello.js
         this.setState({center:newCenter});
-        this.setState({zoom:10});
+        this.setState({zoom:5});
       }
     }
+    // curProps.listGasStations.len
+    // if (curProps.listGasStations.len !== prevProps.listGasStations.len) {
+    //   console.log("Update State mark");
+    // }
   }
 
 
   render() {
+ // if (this.state.loading) {
+    //   return <div>loading...</div>;
+    // }
+    if (this.props.listGasStations) {
+      console.log(this.props.listGasStations);
+    }
+    const p = this.props.listGasStations.map (d => (
+      <p>
+        Gas Stations
+        <br />
+        {d.address}
+        {", " + d.city}
+        {" $ " + d.reg_price}
+      </p>
+    ))
 
     return (
       // Important! Always set the container height explicitly
@@ -70,6 +91,9 @@ class MapPlaceHolder extends Component {
               id={2}
             />
           </GoogleMapReact>
+          <div className="location">
+            {p}
+          </div>
         </div >
       </div>
     );
