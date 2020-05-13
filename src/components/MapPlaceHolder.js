@@ -12,6 +12,14 @@ class MapPlaceHolder extends Component {
         lng: 0
       },
       zoom: 1
+
+      // {this.state.teams.map(teams =>
+      //   <tr key = {teams.id} className =
+      //     {this.state.curTeamID === teams.id ? "curTeam" : "notCurTeam"} >
+      //   <td>{teams.teamName}</td>
+      //   <td>{teams.teamState}</td>
+      //   </tr>
+      // )}
     };
   }
 
@@ -21,8 +29,6 @@ class MapPlaceHolder extends Component {
     let prevCoords = [prevProps.originLat, prevProps.originLng, prevProps.destLat, prevProps.destLng];
     if (!(curCoords.includes(null) || curCoords.includes(undefined))) {
       if (!(JSON.stringify(curCoords) === JSON.stringify(prevCoords))) {
-        var k = JSON.stringify(curCoords);
-        console.log(k);
         let newLat = (curCoords[0] + curCoords[2]) / 2.0;
         let newLng = (curCoords[1] + curCoords[3]) / 2.0;
         let newCenter = {lat:newLat, lng:newLng};
