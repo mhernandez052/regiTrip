@@ -78,7 +78,9 @@ class LandingPage extends React.Component {
   ParseData = () => {
     // Start with getting Route
     // var url = "https://maps.googleapis.com/maps/api/directions/json?origin=38.5815719,-121.4943996&destination=Chico,CA&key=AIzaSyCo-D9CXQAmJifdiIlYVAAA69xCCHKjZBA"
-    var directionsUrl = "https://maps.googleapis.com/maps/api/directions/json?origin=";
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    var directionsUrl = proxyurl + "https://maps.googleapis.com/maps/api/directions/json?origin=";
+
     var temp = this.state.originLat + "," + this.state.originLng + "&destination=";
     directionsUrl += temp;
     temp = this.state.destLat + "," + this.state.destLng + "&key=AIzaSyCo-D9CXQAmJifdiIlYVAAA69xCCHKjZBA"
