@@ -6,6 +6,7 @@ import './LandingPage.css';
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 import { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete';
 import 'react-google-places-autocomplete/dist/index.min.css';
+import CarInfo from './CarInfo';
 
 class LandingPage extends React.Component {
   constructor() {
@@ -43,6 +44,8 @@ class LandingPage extends React.Component {
     this.setState({ destLat: latLng.lat })
     this.setState({ destLng: latLng.lng })
   }
+
+
   render() {
     return (
       <div>
@@ -55,15 +58,13 @@ class LandingPage extends React.Component {
           />
         </div>
         <div className="DestInput">
-          <GooglePlacesAutocomplete
+          <GooglePlacesAutocomplete 
             value={this.state.DestAddress}
             onSelect={this.handleDestSelect}
             onChange={this.handleDestAddress}
             placeholder={"Enter Destination"}
           />
         </div>
-        {/* var props = { x: 1, y: 1, z:1 };
-<Component {...props} /> */}
         <div className="MapStyle">
           <MapPlaceHolder {...this.state} />
         </div>
